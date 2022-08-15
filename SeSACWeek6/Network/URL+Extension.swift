@@ -18,5 +18,13 @@ extension URL {
 }
 
 extension UILabel {
-    
+    func talkLabelsSet() {
+        self.layer.cornerRadius = 5
+        self.clipsToBounds = true
+        self.backgroundColor = .white
+        self.font = .systemFont(ofSize: 16)
+        self.textColor = .black
+        
+        
+    }
 }

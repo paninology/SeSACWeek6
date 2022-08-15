@@ -31,11 +31,17 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
         
         locationManager.delegate = self
+        weatherLabelsSet()
         
     }
 
     func weatherLabelsSet() {
-        locationLabel
+        temperatureLabel.talkLabelsSet()
+        messegaLabel.talkLabelsSet()
+        humidityLabel.talkLabelsSet()
+        windLabel.talkLabelsSet()
+        locationLabel.font = .boldSystemFont(ofSize: 24)
+        iconImageView.backgroundColor = .white
     }
     
     
@@ -119,10 +125,10 @@ extension WeatherViewController: CLLocationManagerDelegate {
                 let temperature = round((json["main"]["temp"].doubleValue - 273.15) * 100) / 100
                 
                 self.locationLabel.text = json["name"].stringValue
-                self.humidityLabel.text = "오늘의 습도는 \(json["main"]["humidity"].intValue.description)도 입니다."
-                self.messegaLabel.text = "좋은 하루 되세요."
-                self.temperatureLabel.text = "오늘의 기온은 \(temperature)도 입니다."
-                self.windLabel.text = "오늘의 풍속은 \(json["wind"]["speed"].stringValue)입니다."
+                self.humidityLabel.text = "  오늘의 습도는 \(json["main"]["humidity"].intValue.description)도 입니다  "
+                self.messegaLabel.text = "  좋은 하루 되세요  "
+                self.temperatureLabel.text = "  오늘의 기온은 \(temperature)도 입니다  "
+                self.windLabel.text = "  오늘의 풍속은 \(json["wind"]["speed"].stringValue)입니다  "
                 self.iconImageView.kf.setImage(with: iconURL)
                 
                 dateSet(time: json["dt"].doubleValue)
